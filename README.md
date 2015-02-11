@@ -96,7 +96,7 @@ Our options are nano, vim, and emacs. If you are familiar with one of these, ple
 3. All we need to do is edit the location of where the website files exist: <code>root /usr/share/nginx/html;</code> becomes <code>root /home/ubuntu/portfolio;</code>
 4. To save in emacs we need to hit: cntrl-x then cntrl-s
 5. To exit emacs we need to hit: cntrl-x then cntrl-c
-6. Lastly, we need to restart nginx so our changes take affect: <code>sudo service nginx restart</code>. <code>service</code> is a useful tool that helps give us some shortcut commands to start|stop|restart various tools on our server.
+6. Lastly, we need to restart nginx so our changes take affect: <code>sudo service nginx restart service</code> is a useful tool that helps give us some shortcut commands to start|stop|restart various tools on our server.
 
 ## Creating a New User
 1. Create an ssh key: <code>ssh-keygen -t rsa</code>
