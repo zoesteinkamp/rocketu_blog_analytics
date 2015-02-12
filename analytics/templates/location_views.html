@@ -1,0 +1,15 @@
+{% extends 'base_analytics_template.html' %}
+{% load staticfiles %}
+
+{% block extra_header %}
+      <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIGvLonUnex7UgG5WH2ihTcMrTKi0P1L0">
+    </script>
+    <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+{% endblock extra_header %}
+
+{% block main %}
+    <div id="map-canvas"></div>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}" />
+{% endblock main %}

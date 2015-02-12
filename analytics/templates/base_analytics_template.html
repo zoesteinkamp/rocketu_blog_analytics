@@ -8,9 +8,25 @@
 
         <title>My Blog</title>
 
-        {% block extra_header %}{% endblock extra_header %}
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
+        <style type="text/css">
+          #map-canvas { height: 100%; margin: 0; padding: 0;}
+        </style>
+        <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCldyCSJq8SwW6so6MDlEH_-7ps7q-5PWY">
+        </script>
+        <script type="text/javascript">
+          function initialize() {
+            var mapOptions = {
+              center: { lat: -34.397, lng: 150.644},
+              zoom: 8
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
     </head>
     <body>
         <div class="container">
@@ -19,7 +35,6 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'blog' %}">Blog</a></li>
-                    <li><a href="{% url 'email_signup' %}"></a></li>
                 </ul>
                 <h3 class="text-muted">My Blog</h3>
             </div>
@@ -28,7 +43,7 @@
 
             <div class="row">
                 <div class="col-md-10">
-                    {% block main %}{% endblock main %}
+                    <div id="map-canvas"></div>
                 </div>
 
                 <div class="col-md-2">
@@ -43,25 +58,32 @@
                     {% for month, count in month_count.iteritems %}
                         <p>{{ month }}: {{ count }}</p>
                     {% endfor %}
-                    <hr>
-                        {{ year_count.1.0 }}
-                        {% for month, count in year_count.1.0.iteritems %}
-                            <p>{{ month }} {{ count }}</p>
-                        {% endfor %}
-
                 </div>
             </div>
 
             <hr>
 
             <div class="row">
-                <div class="col-md-12">Latest blog post goes here!</div
+                <div class="col-md-12">Latest blog post goes here!</div>
+                <div class="row">
+                    <div class="col-md-6 well">
+                        <h3>Checkout our latest post!</h3>
+                        <h4>{{ latest_post.title }}</h4>
+                        <div>by {{ latest_post.author }} on {{ latest_post.created }}</div>
+                        <a href="{% url 'post' latest_post.pk %}">Read it!</a>
+                    </div>
+                    <div class="pull-right">
+                        <p>Have you thought about visiting {{ ad.state }}</p>
+                        <img src="{% static ad.ad_image %}" width="400px" height="400px" />
+                    </div>
+
+                </div>
             </div>
 
             <hr>
 
             <div class="footer">
-                <div class="pull-right">Welcome user from {{ location }}!</div>
+                <div class="pull-right">Welcome user from {{ location.city }}!</div>
                 <p>&copy; My Blog 2014</p>
 
             </div>
